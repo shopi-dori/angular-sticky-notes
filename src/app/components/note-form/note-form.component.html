@@ -1,1 +1,40 @@
-<p>note-form works!</p>
+<div class="row">
+  <div class="col-6">
+    <h2>Sticky Note Details</h2>
+
+    <div class="card">
+      <div class="card-body">
+        <form (ngSubmit)="onSave()">
+          <div class="mb-3">
+            <label for="colorInput" class="form-label">Color</label>
+            <select id="colorInput" class="form-select" required [(ngModel)]="colorId" name="colorId">
+              <option *ngFor="let noteColor of noteColors" [value]="noteColor.id">{{noteColor.name}}</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label for="titleInput" class="form-label">Title</label>
+            <input id="titleInput" type="text" class="form-control" placeholder="Title" required [(ngModel)]="title" name="title">
+          </div>
+
+          <div class="mb-3">
+            <label for="descriptionInput" class="form-label">Description</label>
+            <textarea id="descriptionInput" class="form-control" placeholder="Description" rows="10" required [(ngModel)]="description" name="description"></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary me-2">Save</button>
+          <button type="button" class="btn btn-light me-2" (click)="onLorem()">Lorem</button>
+          <a routerLink="/notes" class="btn btn-light">Discard</a>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-6">
+    <h2>Preview</h2>
+
+    <asn-note-details [note]="getNewNote()"></asn-note-details>
+  </div>
+</div>
+
+

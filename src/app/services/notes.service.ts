@@ -34,11 +34,33 @@ export class NotesService {
   }
 
   public addNote(note: Note): void {
-    // TODO
+    note.id = this.getNextId();
+
+    this.notes.push(note);
   }
 
   public deleteNote(id: number): void {
-    // TODO
+    const noteIndex = this.notes.findIndex((note: Note) => { return note.id === id });
+
+    if (noteIndex >= 0) {
+      this.notes.splice(noteIndex, 1);
+    }
+  }
+
+  private getNextId(): number {
+    let lastId = 0;
+
+    this.notes.forEach((note: Note) => {
+      const candidateNoteId = note.id;
+
+      if (candidateNoteId > lastId) {
+        lastId = candidateNoteId
+      }
+    });
+
+    const nextId = lastId + 1;
+
+    return nextId;
   }
 
   private initializeNotes(): void {
@@ -62,12 +84,12 @@ export class NotesService {
   private initializeNoteColors(): void {
     this.noteColors = [
       this.BlueNoteColor,
-      { id: 'success', name: 'Green' },
-      { id: 'danger', name: 'Red' },
-      this.YellowNoteColor,
-      { id: 'secondary', name: 'Medium Gray' },
       { id: 'info', name: 'Teal' },
+      { id: 'success', name: 'Green' },
+      this.YellowNoteColor,
+      { id: 'danger', name: 'Red' },
       { id: 'light', name: 'Light Gray' },
+      { id: 'secondary', name: 'Medium Gray' },
       { id: 'dark', name: 'Dark Gray' },
     ];
   }

@@ -13,6 +13,7 @@ import { NoteDetailsComponent } from './components/note-details/note-details.com
 import { NoteFormComponent } from './components/note-form/note-form.component';
 import { AppNavbarComponent } from './components/app-navbar/app-navbar.component';
 import { NoteListViewComponent } from './views/note-list-view/note-list-view.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { NoteListViewComponent } from './views/note-list-view/note-list-view.com
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
