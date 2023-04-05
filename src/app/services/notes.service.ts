@@ -39,12 +39,30 @@ export class NotesService {
     this.notes.push(note);
   }
 
+  public saveNote(note: Note): void {
+    if (!note) {
+      return;
+    }
+
+    const noteIndex = this.getNoteIndex(note.id);
+
+    if (noteIndex >= 0) {
+      this.notes.splice(noteIndex, 1, note);
+    }
+  }
+
   public deleteNote(id: number): void {
-    const noteIndex = this.notes.findIndex((note: Note) => { return note.id === id });
+    const noteIndex = this.getNoteIndex(id);
 
     if (noteIndex >= 0) {
       this.notes.splice(noteIndex, 1);
     }
+  }
+
+  private getNoteIndex(id: number): number {
+    const noteIndex = this.notes.findIndex((note: Note) => { return note.id === id });
+
+    return noteIndex;
   }
 
   private getNextId(): number {

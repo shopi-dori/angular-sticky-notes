@@ -1,5 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NoteColor } from 'src/app/models/note-color';
 import { Note } from 'src/app/models/note.model';
 import { NotesService } from 'src/app/services/notes.service';
@@ -12,20 +11,28 @@ import { NotesService } from 'src/app/services/notes.service';
 export class NoteFormComponent implements OnInit {
   @Input() note: Note | undefined;
 
+  @Output('save') saveEventEmitter = new EventEmitter<Note>();
+
   protected title: string = '';
   protected description: string = '';
   protected colorId: string = '';
 
   protected noteColors!: NoteColor[];
 
-  constructor(private notesService: NotesService, private router: Router) {
+  constructor(private notesService: NotesService) {
 
   }
 
   public ngOnInit(): void {
     this.noteColors = this.notesService.getNoteColors();
 
-    this.colorId = this.noteColors[0].id;
+    if (this.note) {
+      this.colorId = this.note.colorId;
+      this.title = this.note.title;
+      this.description = this.note.description;
+    } else {
+      this.colorId = this.noteColors[0].id;
+    }
   }
 
   protected getNewNote(): Note {
@@ -42,9 +49,7 @@ export class NoteFormComponent implements OnInit {
   protected onSave(): void {
     const note: Note = this.getNewNote();
 
-    this.notesService.addNote(note);
-
-    this.router.navigate(['/notes']);
+    this.saveEventEmitter.emit(note);
   }
 
   protected onLorem(): void {
