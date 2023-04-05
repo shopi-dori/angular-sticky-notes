@@ -1,1 +1,7 @@
-<p>note-details-view works!</p>
+<h1>Note Details</h1>
+
+<asn-note-details *ngIf="note" [note]="note!"></asn-note-details>
+
+<div *ngIf="!note" class="alert alert-warning" role="alert">
+  No note details available
+</div>

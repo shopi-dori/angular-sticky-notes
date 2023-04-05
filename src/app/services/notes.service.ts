@@ -33,6 +33,14 @@ export class NotesService {
     return matchingNote;
   }
 
+  public addNote(note: Note): void {
+    // TODO
+  }
+
+  public deleteNote(id: number): void {
+    // TODO
+  }
+
   private initializeNotes(): void {
     this.notes = [
       {
