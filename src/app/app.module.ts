@@ -12,10 +12,12 @@ import { NoteListComponent } from './components/note-list/note-list.component';
 import { NoteDetailsComponent } from './components/note-details/note-details.component';
 import { NoteFormComponent } from './components/note-form/note-form.component';
 import { AppNavbarComponent } from './components/app-navbar/app-navbar.component';
+import { NoteListViewComponent } from './views/note-list-view/note-list-view.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    NoteListViewComponent,
     NoteDetailsViewComponent,
     NoteEditViewComponent,
     NoteAddViewComponent,

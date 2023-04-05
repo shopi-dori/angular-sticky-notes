@@ -1,1 +1,5 @@
-<p>note-list works!</p>
+<div class="row">
+  <div class="col-3" *ngFor="let note of notes">
+    <asn-note-details [note]="note"></asn-note-details>
+  </div>
+</div>
